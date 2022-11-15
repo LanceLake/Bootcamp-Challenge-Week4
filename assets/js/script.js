@@ -31,6 +31,8 @@ var choice4 = document.getElementById('choice4');
 var answerResult = document.getElementById('answerResult');
 var endGame = document.getElementById('endGame');
 var score = document.getElementById('score');
+var highScores = JSON.parse(localStorage.getItem('leaderboard')) || [];
+var currentScore = {score: ""};
 
 
 
@@ -71,7 +73,7 @@ var questionJSON = 	{
 								, "answer": 2
 							},
 							{ 	
-								"question": "What would following code return?console.log(false == '0');console.log(false === '0')"
+								"question": "What would following code return? console.log(false == '0');console.log(false === '0')"
 								, "choice1": "True, True"
 								, "choice2": "True, False"
 								, "choice3": "False, True"
@@ -99,7 +101,7 @@ endGame.style.visibility = 'hidden';
 startTest.addEventListener ('click', function()
 		{
 
-			var timeLeft = 5;
+			var timeLeft = 1;
 
 			startTest.style.visibility = 'hidden';
 			countdown.textContent = "We will be starting in " + timeLeft + " seconds.";
@@ -159,9 +161,7 @@ startTest.addEventListener ('click', function()
 
 	function runTest()
 	{
-		console.log(questionJSON.questions.length);
-		console.log(questionCount);
-		
+	
 		if(questionJSON.questions.length == questionCount)
 		{
 			runEnd();
@@ -247,7 +247,6 @@ startTest.addEventListener ('click', function()
 	function runEnd()
 		{
 			finalScore = timerCount;
-			console.log("complete");
 			choice1.style.visibility = 'hidden';
 			choice2.style.visibility = 'hidden';
 			choice3.style.visibility = 'hidden';
@@ -256,11 +255,8 @@ startTest.addEventListener ('click', function()
 			timer.style.visibility = 'hidden';
 			timer.textContent = "";
 			answerResult.textContent = "";
-			score.textContent = "Your score is: " + finalScore;
-			if(JSON.parse(window.localStorage.getItem('score')) >= finalScore)
-			{
-				endGame.textContent = "Sorry. The high score is " + JSON.parse(window.localStorage.getItem('score')) + " and you got " + finalScore + ". In order to put your initials in the scoreboard, you need to beat the high score.";
-			}
+			enterScore.textContent = "Your score is: " + finalScore;
+
 			endGame.style.visibility = 'visible';
 		}
 
@@ -288,7 +284,15 @@ signUpButton.addEventListener("click", function(event) {
 
 */
 
-		window.localStorage.setItem('score', finalScore);
-		window.localStorage.setItem('initials', document.querySelector('#initials').value);
+		currentScore.score = finalScore;
+		currentScore.initials = document.querySelector('#initials').value;
+
+		highScores.push(currentScore);
+		localStorage.setItem("leaderboard.l", JSON.stringify(highScores));
+
+//		window.localStorage.setItem('score', finalScore);
+//		window.localStorage.setItem('initials', document.querySelector('#initials').value);
+
+
 		endGame.textContent = 'Saved. Please reload to play again.';
 	});

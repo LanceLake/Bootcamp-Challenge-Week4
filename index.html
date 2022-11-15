@@ -14,23 +14,27 @@
 	<script defer src="./assets/js/script.js"></script>
 
 	<body>
-		<div id="countdown"></div>
-		<div id="timer"></div>
-		<div id="question"></div>
-		<button id="choice1"></button>
-		<button id="choice2"></button>
-		<button id="choice3"></button>
-		<button id="choice4"></button>
-		<div id="answerResult"></div>
+		<div id="countdown" class="flex flexcontainer flexwrap countdown"></div>
+		<div id="timer" class="flex flexcontainer flexwrap timer"></div>
+		<div id="question" class="flex flexcontainer flexwrap question"></div>
+		<div class = "flex flexcontainer flexwrap question flexcolumn">
+			<button id="choice1"></button>
+			<button id="choice2"></button>
+			<button id="choice3"></button>
+			<button id="choice4"></button>
+		</div>
+		<div id="answerResult" class="flex flexcontainer flexwrap answer"></div>
 
-		<div id="endGame">
-			<div id="score"></div>
+		<div id="endGame" class="flex flexcontainer flexwrap">
+			<div id="enterScore" class="flex flexcontainer flexwrap enterScore"></div>
 			Please enter your initials: <input type="text" id="initials" placeholder="Put your initials here">
-			<button id="submitInitials">Submit your initials into the hall of fame</button>
+			<BR>
+			<BR>
+			<button id="submitInitials" class="flex flexcontainer flexwrap">Submit your initials into the hall of fame</button>
 
 		</div>
 
-		<button id="startTest">Start Test</button>
+		<button id="startTest" class="flex flexcontainer flexwrap start">Start Test</button>
 
 
 	</body>
