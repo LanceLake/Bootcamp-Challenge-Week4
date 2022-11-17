@@ -101,7 +101,7 @@ endGame.style.visibility = 'hidden';
 startTest.addEventListener ('click', function()
 		{
 
-			var timeLeft = 1;
+			var timeLeft = 5;
 
 			startTest.style.visibility = 'hidden';
 			countdown.textContent = "We will be starting in " + timeLeft + " seconds.";
@@ -288,7 +288,7 @@ signUpButton.addEventListener("click", function(event) {
 		currentScore.initials = document.querySelector('#initials').value;
 
 		highScores.push(currentScore);
-		localStorage.setItem("leaderboard.l", JSON.stringify(highScores));
+		localStorage.setItem("leaderboard", JSON.stringify(highScores));
 
 //		window.localStorage.setItem('score', finalScore);
 //		window.localStorage.setItem('initials', document.querySelector('#initials').value);
